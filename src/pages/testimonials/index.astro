@@ -1,5 +1,8 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+
+const testimonials = await getCollection('testimonials');
 ---
 
 <Layout title="Testimonials" currentPath="/testimonials">
@@ -16,20 +19,12 @@ import Layout from '../../layouts/Layout.astro';
     
     <h2>Individual Stories</h2>
     <div class="card-grid">
-      <a href="/testimonials/classical-guitarist-index-finger-fd" class="card">
-        <h3>Right Hand Index Finger FD</h3>
-        <p>The story of a classical guitarist who regained independent finger control and returned to playing concert repertoire.</p>
-      </a>
-      
-      <a href="/testimonials/guitarist-left-fretting-hand-dystonia" class="card">
-        <h3>Left Fretting Hand Dystonia</h3>
-        <p>A detailed recovery testimonial from a guitarist struggling with fretting hand coordination.</p>
-      </a>
-      
-      <a href="/testimonials/guitarist-fretting-hand-dystonia-recovery" class="card">
-        <h3>Fretting Hand Recovery & Videos</h3>
-        <p>A recovery case study featuring video links documenting the progress and retraining steps of a professional player.</p>
-      </a>
+      {testimonials.map(testimonial => (
+        <a href={`/testimonials/${testimonial.id}`} class="card">
+          <h3>{testimonial.data.title}</h3>
+          <p>{testimonial.data.description}</p>
+        </a>
+      ))}
     </div>
   </article>
 </Layout>

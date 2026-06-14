@@ -1,5 +1,10 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+
+const programs = await getCollection('programs');
+// Sort by order field
+const sortedPrograms = programs.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
 ---
 
 <Layout title="Programs" currentPath="/programs">
@@ -18,30 +23,12 @@ import Layout from '../../layouts/Layout.astro';
     
     <h2>Options & Resources</h2>
     <div class="card-grid">
-      <a href="/programs/free-first-consultation" class="card">
-        <h3>Free First Consultation</h3>
-        <p>A introductory Skype session to assess your symptoms and discuss how a retraining program can help you.</p>
-      </a>
-      
-      <a href="/programs/the-splint" class="card">
-        <h3>Splints I Use</h3>
-        <p>Learn about how physical orthotic splints are constructed and used to isolate movement during retraining.</p>
-      </a>
-      
-      <a href="/programs/program-option-1" class="card">
-        <h3>Program Option 1</h3>
-        <p>A guided retraining program focusing on basic movement isolation and motor map retraining.</p>
-      </a>
-      
-      <a href="/programs/program-option-2" class="card">
-        <h3>Program Option 2</h3>
-        <p>A comprehensive coaching option with frequent video feedback and dynamic exercise adjustments.</p>
-      </a>
-      
-      <a href="/programs/coping-without-retraining" class="card">
-        <h3>Coping Without Retraining</h3>
-        <p>Strategies, instrument modifications, and ergonomic changes to help you continue playing while managing FHD symptoms.</p>
-      </a>
+      {sortedPrograms.map(program => (
+        <a href={`/programs/${program.id}`} class="card">
+          <h3>{program.data.title}</h3>
+          <p>{program.data.description}</p>
+        </a>
+      ))}
     </div>
   </article>
 </Layout>
