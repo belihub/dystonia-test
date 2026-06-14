@@ -1,45 +1,81 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Contact" currentPath="/contact">
   <article>
     <h1>Contact & Consultation</h1>
-    <p>To arrange a free initial Skype consultation or to ask questions about focal hand dystonia retraining, please complete the form below or write directly to my email.</p>
-    
-    <p>Please share as much detail as you can about the instrument you play, which fingers are affected, how long you've experienced coordination loss, and what other treatments or therapies you have tried.</p>
+    <p>
+      To arrange a free initial Skype consultation or to ask questions about
+      focal hand dystonia retraining, please complete the form below or write
+      directly to my email.
+    </p>
+
+    <p>
+      Please share as much detail as you can about the instrument you play,
+      which fingers are affected, how long you've experienced coordination loss,
+      and what other treatments or therapies you have tried.
+    </p>
 
     <blockquote>
-      "Every case of focal hand dystonia is unique. Sharing detailed history helps me analyze the situation before our Skype session."
+      "Every case of focal hand dystonia is unique. Sharing detailed history
+      helps me analyze the situation before our Skype session."
     </blockquote>
 
-    <form style="margin: 2.5rem 0;" onsubmit="event.preventDefault(); alert('Thank you for your message! This is a demo form. In a production site, this would submit to an email service.');">
+    <form
+      style="margin: 2.5rem 0;"
+      onsubmit="event.preventDefault(); alert('Thank you for your message! This is a demo form. In a production site, this would submit to an email service.');"
+    >
       <div class="form-group">
         <label for="name">Your Name</label>
         <input type="text" id="name" name="name" required placeholder="Name" />
       </div>
-      
+
       <div class="form-group">
         <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" required placeholder="email@example.com" />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="email@example.com"
+        />
       </div>
 
       <div class="form-group">
         <label for="skype">Skype ID or Zoom Email</label>
-        <input type="text" id="skype" name="skype" placeholder="Skype username / zoom contact" />
+        <input
+          type="text"
+          id="skype"
+          name="skype"
+          placeholder="Skype username / zoom contact"
+        />
       </div>
 
       <div class="form-group">
         <label for="instrument">Instrument Played</label>
-        <input type="text" id="instrument" name="instrument" required placeholder="e.g. Classical Guitar, Piano, Violin" />
+        <input
+          type="text"
+          id="instrument"
+          name="instrument"
+          required
+          placeholder="e.g. Classical Guitar, Piano, Computer Keyboard"
+        />
       </div>
 
       <div class="form-group">
         <label for="symptoms">Description of Symptoms</label>
-        <textarea id="symptoms" name="symptoms" rows="6" required placeholder="e.g. Right index finger curls when playing fast scales..."></textarea>
+        <textarea
+          id="symptoms"
+          name="symptoms"
+          rows="6"
+          required
+          placeholder="e.g. Right index finger curls when playing fast scales..."
+        ></textarea>
       </div>
 
-      <button type="submit" class="btn">Send Consultation Request &rarr;</button>
+      <button type="submit" class="btn">Send Consultation Request &rarr;</button
+      >
     </form>
 
     <h2>Alternative Contact Info</h2>
