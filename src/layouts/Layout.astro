@@ -1,0 +1,418 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  currentPath?: string;
+}
+
+const { title, description = "Movement therapy for retraining and resolution of focal hand dystonia.", currentPath = "" } = Astro.props;
+
+// Helper to determine if nav link is active
+const isActive = (path: string) => {
+  if (path === '/' && currentPath === '/') return true;
+  if (path !== '/' && currentPath.startsWith(path)) return true;
+  return false;
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <title>{title} | Musician's Focal Hand Dystonia Retraining</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-container">
+        <div class="logo">
+          <a href="/" class="site-title">Musician's Focal Hand Dystonia</a>
+          <span class="site-tagline">Movement therapy for retraining and resolution</span>
+        </div>
+        <nav class="main-nav">
+          <ul class="nav-menu">
+            <li><a href="/" class={isActive('/') ? 'active' : ''}>Home</a></li>
+            <li><a href="/about" class={isActive('/about') ? 'active' : ''}>About</a></li>
+            <li><a href="/blog" class={isActive('/blog') ? 'active' : ''}>Blog</a></li>
+            <li><a href="/testimonials" class={isActive('/testimonials') ? 'active' : ''}>Testimonials</a></li>
+            <li><a href="/programs" class={isActive('/programs') ? 'active' : ''}>Programs</a></li>
+            <li><a href="/contact" class={isActive('/contact') ? 'active' : ''}>Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <slot />
+    </main>
+
+    <footer>
+      <div class="footer-container">
+        <p>&copy; {new Date().getFullYear()} Yogi Ponappa. Retraining & Movement Therapy for Musician's Focal Hand Dystonia.</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8;">Built with Astro &bull; Designed with Minimal CSS</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  /* Base design system tokens */
+  :root {
+    --font-heading: 'Montserrat', system-ui, -apple-system, sans-serif;
+    --font-body: 'Source Sans Pro', system-ui, -apple-system, sans-serif;
+
+    --bg: #fefefa;
+    --text: #1c1917;
+    --text-muted: #57534e;
+    --accent: #4f46e5;
+    --accent-hover: #4338ca;
+    --border: #e7e5e4;
+    --surface: #ffffff;
+    --header-bg: #f5f5f4;
+    --max-width: 760px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0c0a09;
+      --text: #f5f5f4;
+      --text-muted: #a8a29e;
+      --accent: #818cf8;
+      --accent-hover: #6366f1;
+      --border: #292524;
+      --surface: #1c1917;
+      --header-bg: #1c1917;
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    background-color: var(--header-bg);
+    padding: 1.5rem 1rem;
+  }
+
+  .header-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .header-container {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    line-height: 1.2;
+  }
+
+  .site-tagline {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.25rem 0;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    border-bottom: 2px solid transparent;
+  }
+
+  nav a:hover, nav a:focus {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+  }
+
+  nav a.active {
+    color: var(--text);
+    border-bottom-color: var(--text);
+  }
+
+  /* Page wrapper */
+  .main-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2.5rem 1rem;
+    min-height: 60vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--text);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  p {
+    margin: 0 0 1.25rem 0;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent);
+    transition: all 0.2s ease;
+  }
+
+  a:hover, a:focus {
+    color: var(--accent-hover);
+    border-bottom-style: solid;
+  }
+
+  blockquote {
+    margin: 1.5rem 0;
+    padding: 0.5rem 1rem;
+    border-left: 4px solid var(--accent);
+    background-color: var(--surface);
+    font-style: italic;
+    color: var(--text-muted);
+  }
+
+  code {
+    font-family: monospace;
+    background-color: var(--surface);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    border: 1px solid var(--border);
+  }
+
+  pre {
+    background-color: var(--surface);
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+
+  th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  th {
+    font-family: var(--font-heading);
+    font-weight: 600;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+    padding: 2rem 1rem;
+    background-color: var(--header-bg);
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  /* Card / grid styling */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 600px) {
+    .card-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none !important;
+    color: inherit !important;
+    border-bottom: 1px solid var(--border) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-color: var(--accent) !important;
+  }
+
+  .card h3 {
+    margin-top: 0;
+    color: var(--text);
+  }
+  
+  .card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    background-color: var(--accent);
+    color: #ffffff !important;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+    border-bottom: none !important;
+    text-align: center;
+  }
+
+  .btn:hover, .btn:focus {
+    background-color: var(--accent-hover);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--text) !important;
+    border: 1px solid var(--border);
+  }
+
+  .btn-secondary:hover, .btn-secondary:focus {
+    background-color: var(--surface);
+  }
+
+  /* Form Styles */
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  label {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  input[type="text"], input[type="email"], textarea, select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background-color: var(--surface);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 1rem;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    outline: 2px solid var(--accent);
+    border-color: transparent;
+  }
+
+  /* Sub-nav breadcrumb/submenu block for sections */
+  .section-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding: 0.5rem;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.9rem;
+  }
+  
+  .section-nav a {
+    border-bottom: none;
+    padding: 0.35rem 0.7rem;
+    border-radius: 4px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  
+  .section-nav a:hover {
+    color: var(--text);
+    background-color: var(--header-bg);
+  }
+  
+  .section-nav a.active {
+    background-color: var(--accent);
+    color: #fff;
+  }
+</style>

@@ -1,0 +1,32 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout title="Articles" currentPath="/blog/articles">
+  <div class="section-nav">
+    <a href="/blog">Blog Overview</a>
+    <a href="/blog/articles" class="active">Articles List</a>
+  </div>
+
+  <article>
+    <h1>All Articles</h1>
+    <p>Read detailed articles written to help musicians understand the neurology, ergonomics, and daily practice of focal dystonia recovery.</p>
+    
+    <div style="margin: 2rem 0;">
+      <article style="margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem;">
+        <h3><a href="/blog/articles/musicians-focal-hand-dystonia-what-you-need-to-know">Musician's focal hand dystonia - what you need to know</a></h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">An essential primer covering diagnosis, neurological mechanisms, and standard vs. alternative recovery options.</p>
+      </article>
+
+      <article style="margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem;">
+        <h3><a href="/blog/articles/insights-fhd-resolution">Some insights in F(H)D resolution (January-June 2016)</a></h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Key findings and practical observations gained from six months of intensive client retraining sessions.</p>
+      </article>
+
+      <article style="margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem;">
+        <h3><a href="/blog/articles/understanding-focal-dystonia-thailand-guitar-society">'Understanding Focal Dystonia' - my presentation to the Thailand Guitar Society</a></h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">A summary of the talk given to guitarists in Thailand regarding early symptoms, prevention, and retraining fundamentals.</p>
+      </article>
+    </div>
+  </article>
+</Layout>
