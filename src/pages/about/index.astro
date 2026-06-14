@@ -1,12 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="About" currentPath="/about">
   <div class="section-nav">
-    <a href="/about" class="active">About Overview</a>
-    <a href="/about/my-story">My Story</a>
-    <a href="/about/my-approach">My Approach</a>
+    <a href={`${base}about`} class="active">About Overview</a>
+    <a href={`${base}about/my-story`}>My Story</a>
+    <a href={`${base}about/my-approach`}>My Approach</a>
   </div>
 
   <article>
@@ -16,11 +18,11 @@ import Layout from '../../layouts/Layout.astro';
     <h2>Section Sitemap</h2>
     <ul>
       <li>
-        <a href="/about/my-story"><strong>My Story</strong></a>
+        <a href={`${base}about/my-story`}><strong>My Story</strong></a>
         <p>A detailed look into my personal history of developing focal hand dystonia as a classical guitarist, my struggles with standard medical advice, and how I eventually resolved the condition myself.</p>
       </li>
       <li>
-        <a href="/about/my-approach"><strong>My Approach</strong></a>
+        <a href={`${base}about/my-approach`}><strong>My Approach</strong></a>
         <p>An explanation of the kinesiology, ergonomic adjustments, and behavioral therapy methods that underpin my movement retraining programs.</p>
       </li>
     </ul>

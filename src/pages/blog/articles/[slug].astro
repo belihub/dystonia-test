@@ -12,13 +12,15 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title={entry.data.title} description={entry.data.description} currentPath="/blog/articles">
   <div class="section-nav">
-    <a href="/blog">Blog Overview</a>
-    <a href="/blog/articles">Articles List</a>
-    <a href={`/blog/articles/${entry.id}`} class="active">{entry.data.title}</a>
+    <a href={`${base}blog`}>Blog Overview</a>
+    <a href={`${base}blog/articles`}>Articles List</a>
+    <a href={`${base}blog/articles/${entry.id}`} class="active">{entry.data.title}</a>
   </div>
 
   <article>
@@ -28,8 +30,8 @@ const { Content } = await render(entry);
     <Content />
     
     <div style="margin-top: 2.5rem; display: flex; gap: 1rem;">
-      <a href="/blog/articles" class="btn btn-secondary">&larr; Back to Articles</a>
-      <a href="/contact" class="btn">Ask About Retraining</a>
+      <a href={`${base}blog/articles`} class="btn btn-secondary">&larr; Back to Articles</a>
+      <a href={`${base}contact`} class="btn">Ask About Retraining</a>
     </div>
   </article>
 </Layout>

@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Home" currentPath="/">
@@ -17,22 +19,22 @@ import Layout from '../layouts/Layout.astro';
     <p>My approach to resolving focal hand dystonia draws on proven experimental and mainstream behavioural therapies, as well as kinesiology and ergonomic instrument technique. I focus on gentle, deliberate retraining to rebuild the brain's motor maps.</p>
     
     <div class="card-grid">
-      <a href="/about" class="card">
+      <a href={`${base}about`} class="card">
         <h3>About & Story</h3>
         <p>Learn about my personal journey overcoming focal hand dystonia and the retraining principles that guide my practice.</p>
       </a>
       
-      <a href="/programs" class="card">
+      <a href={`${base}programs`} class="card">
         <h3>Programs & Splints</h3>
         <p>Explore retraining options, customized splints, and strategies to cope and recover without medical intervention.</p>
       </a>
       
-      <a href="/testimonials" class="card">
+      <a href={`${base}testimonials`} class="card">
         <h3>Testimonials</h3>
         <p>Read recovery stories and see progress videos from professional guitarists who successfully returned to performing.</p>
       </a>
       
-      <a href="/blog" class="card">
+      <a href={`${base}blog`} class="card">
         <h3>Blog & Articles</h3>
         <p>Read in-depth articles discussing the science, kinesiology, and insights on Focal Hand Dystonia (FHD).</p>
       </a>
@@ -41,7 +43,7 @@ import Layout from '../layouts/Layout.astro';
     <h2>Get in Touch</h2>
     <p>If you'd like to learn more or arrange a consultation, please visit my contact page.</p>
     <div style="margin-top: 1.5rem;">
-      <a href="/contact" class="btn">Arrange a Free Consultation</a>
+      <a href={`${base}contact`} class="btn">Arrange a Free Consultation</a>
     </div>
   </article>
 </Layout>

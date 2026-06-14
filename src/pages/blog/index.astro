@@ -1,11 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Blog" currentPath="/blog">
   <div class="section-nav">
-    <a href="/blog" class="active">Blog Overview</a>
-    <a href="/blog/articles">Articles List</a>
+    <a href={`${base}blog`} class="active">Blog Overview</a>
+    <a href={`${base}blog/articles`}>Articles List</a>
   </div>
 
   <article>
@@ -14,17 +16,17 @@ import Layout from '../../layouts/Layout.astro';
     
     <h2>Featured Articles</h2>
     <div class="card-grid">
-      <a href="/blog/articles/musicians-focal-hand-dystonia-what-you-need-to-know" class="card">
+      <a href={`${base}blog/articles/musicians-focal-hand-dystonia-what-you-need-to-know`} class="card">
         <h3>What You Need to Know</h3>
         <p>A comprehensive introduction to Focal Hand Dystonia, its symptoms, and the reality of rehabilitation.</p>
       </a>
       
-      <a href="/blog/articles/insights-fhd-resolution" class="card">
+      <a href={`${base}blog/articles/insights-fhd-resolution`} class="card">
         <h3>Insights in FHD Resolution</h3>
         <p>Observations and clinical findings from retraining cases conducted between January and June 2016.</p>
       </a>
       
-      <a href="/blog/articles/understanding-focal-dystonia-thailand-guitar-society" class="card">
+      <a href={`${base}blog/articles/understanding-focal-dystonia-thailand-guitar-society`} class="card">
         <h3>Thailand Guitar Society Presentation</h3>
         <p>The notes, slides outline, and core concepts from my presentation titled 'Understanding Focal Dystonia'.</p>
       </a>

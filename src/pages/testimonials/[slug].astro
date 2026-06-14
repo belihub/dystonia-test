@@ -12,14 +12,16 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title={entry.data.title} description={entry.data.description} currentPath="/testimonials">
   <div class="section-nav">
-    <a href="/testimonials">Testimonials Overview</a>
-    <a href="/testimonials/classical-guitarist-index-finger-fd" class={entry.id === 'classical-guitarist-index-finger-fd' ? 'active' : ''}>Right Hand Index Finger</a>
-    <a href="/testimonials/guitarist-left-fretting-hand-dystonia" class={entry.id === 'guitarist-left-fretting-hand-dystonia' ? 'active' : ''}>Left Fretting Hand</a>
-    <a href="/testimonials/guitarist-fretting-hand-dystonia-recovery" class={entry.id === 'guitarist-fretting-hand-dystonia-recovery' ? 'active' : ''}>Fretting Hand Recovery</a>
+    <a href={`${base}testimonials`}>Testimonials Overview</a>
+    <a href={`${base}testimonials/classical-guitarist-index-finger-fd`} class={entry.id === 'classical-guitarist-index-finger-fd' ? 'active' : ''}>Right Hand Index Finger</a>
+    <a href={`${base}testimonials/guitarist-left-fretting-hand-dystonia`} class={entry.id === 'guitarist-left-fretting-hand-dystonia' ? 'active' : ''}>Left Fretting Hand</a>
+    <a href={`${base}testimonials/guitarist-fretting-hand-dystonia-recovery`} class={entry.id === 'guitarist-fretting-hand-dystonia-recovery' ? 'active' : ''}>Fretting Hand Recovery</a>
   </div>
 
   <article>
@@ -27,8 +29,8 @@ const { Content } = await render(entry);
     <Content />
     
     <div style="margin-top: 2.5rem; display: flex; gap: 1rem;">
-      <a href="/testimonials" class="btn btn-secondary">&larr; Back to Testimonials</a>
-      <a href="/contact" class="btn">Start Your Recovery Journey</a>
+      <a href={`${base}testimonials`} class="btn btn-secondary">&larr; Back to Testimonials</a>
+      <a href={`${base}contact`} class="btn">Start Your Recovery Journey</a>
     </div>
   </article>
 </Layout>

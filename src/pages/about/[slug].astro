@@ -12,13 +12,15 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title={entry.data.title} description={entry.data.description} currentPath={`/about/${entry.id}`}>
   <div class="section-nav">
-    <a href="/about">About Overview</a>
-    <a href="/about/my-story" class={entry.id === 'my-story' ? 'active' : ''}>My Story</a>
-    <a href="/about/my-approach" class={entry.id === 'my-approach' ? 'active' : ''}>My Approach</a>
+    <a href={`${base}about`}>About Overview</a>
+    <a href={`${base}about/my-story`} class={entry.id === 'my-story' ? 'active' : ''}>My Story</a>
+    <a href={`${base}about/my-approach`} class={entry.id === 'my-approach' ? 'active' : ''}>My Approach</a>
   </div>
 
   <article>
@@ -27,9 +29,9 @@ const { Content } = await render(entry);
     
     <div style="margin-top: 2rem;">
       {entry.id === 'my-story' ? (
-        <a href="/about/my-approach" class="btn">Learn About My Approach &rarr;</a>
+        <a href={`${base}about/my-approach`} class="btn">Learn About My Approach &rarr;</a>
       ) : (
-        <a href="/programs" class="btn">View Retraining Programs</a>
+        <a href={`${base}programs`} class="btn">View Retraining Programs</a>
       )}
     </div>
   </article>

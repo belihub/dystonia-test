@@ -3,14 +3,16 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
 const testimonials = await getCollection('testimonials');
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Testimonials" currentPath="/testimonials">
   <div class="section-nav">
-    <a href="/testimonials" class="active">Testimonials Overview</a>
-    <a href="/testimonials/classical-guitarist-index-finger-fd">Right Hand Index Finger</a>
-    <a href="/testimonials/guitarist-left-fretting-hand-dystonia">Left Fretting Hand</a>
-    <a href="/testimonials/guitarist-fretting-hand-dystonia-recovery">Fretting Hand Recovery</a>
+    <a href={`${base}testimonials`} class="active">Testimonials Overview</a>
+    <a href={`${base}testimonials/classical-guitarist-index-finger-fd`}>Right Hand Index Finger</a>
+    <a href={`${base}testimonials/guitarist-left-fretting-hand-dystonia`}>Left Fretting Hand</a>
+    <a href={`${base}testimonials/guitarist-fretting-hand-dystonia-recovery`}>Fretting Hand Recovery</a>
   </div>
 
   <article>
@@ -20,7 +22,7 @@ const testimonials = await getCollection('testimonials');
     <h2>Individual Stories</h2>
     <div class="card-grid">
       {testimonials.map(testimonial => (
-        <a href={`/testimonials/${testimonial.id}`} class="card">
+        <a href={`${base}testimonials/${testimonial.id}`} class="card">
           <h3>{testimonial.data.title}</h3>
           <p>{testimonial.data.description}</p>
         </a>
