@@ -19,7 +19,7 @@ const { Content } = await render(entry);
 
 const base = import.meta.env.BASE_URL;
 
-const { links: aboutLinks, nextEntry } = await getSectionNavigation(
+const { links: aboutLinks, nextEntry }: any = await getSectionNavigation(
   "about",
   entry.id,
   `${base}about`,
@@ -45,7 +45,7 @@ const { links: aboutLinks, nextEntry } = await getSectionNavigation(
             alt="Guitar Icon"
             class="site-icon"
             height={140}
-            style="height: 70px; width: auto; object-fit: contain;"
+            style="height: 70px; width: auto; object-fit: contain; margin-left: -10px;"
           />
         )
       }
