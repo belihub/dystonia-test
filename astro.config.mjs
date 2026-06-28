@@ -9,9 +9,8 @@ const isProd = process.env.NODE_ENV === 'production';
 export default defineConfig({
     site: 'https://belihub.github.io',
     base: isProd ? '/dystonia-test/' : '/',
-    output: 'static',
     integrations: [
         react(),
-        keystatic(),
+        ...(isProd ? [] : [keystatic()]),
     ],
 });
