@@ -63,7 +63,9 @@ const base = import.meta.env.BASE_URL;
     <header class="site-header">
       <div class="header-container">
         <div class="logo">
-          <a href={base} class="site-title">Musician's Focal Hand Dystonia</a>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <a href={base} class="site-title">Musician's Focal Hand Dystonia</a>
+          </div>
           <span class="site-tagline"
             >Movement therapy for retraining and resolution</span
           >
@@ -607,6 +609,29 @@ const base = import.meta.env.BASE_URL;
   .btn-secondary:hover,
   .btn-secondary:focus {
     background-color: var(--surface);
+  }
+
+  /* Site Icon (Guitar) dynamic coloring */
+  .site-icon {
+    /* In light/twilight mode, multiply removes the white background */
+    mix-blend-mode: multiply;
+    opacity: 1;
+    transition:
+      filter 0.3s ease,
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  html.dark .site-icon {
+    /* In dark mode, we invert the image (black becomes white, white becomes black) */
+    filter: invert(1);
+    /* Screen removes the now-black background */
+    mix-blend-mode: screen;
+    opacity: 1;
+  }
+
+  html.twilight .site-icon {
+    opacity: 1;
   }
 
   /* Form Styles */

@@ -1,12 +1,14 @@
 ---
-import { getCollection, render } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import SectionNav from '../../components/SectionNav.astro';
-import { getSectionNavigation } from '../../utils/navigation';
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import SectionNav from "../../components/SectionNav.astro";
+import { getSectionNavigation } from "../../utils/navigation";
+import { Image } from "astro:assets";
+import siteLogo from "../../assets/Guitar_on_its_side.png";
 
 export async function getStaticPaths() {
-  const entries = await getCollection('about');
-  return entries.map(entry => ({
+  const entries = await getCollection("about");
+  return entries.map((entry) => ({
     params: { slug: entry.id },
     props: { entry },
   }));
@@ -17,22 +19,51 @@ const { Content } = await render(entry);
 
 const base = import.meta.env.BASE_URL;
 
-const { links: aboutLinks, nextEntry } = await getSectionNavigation('about', entry.id, `${base}about`);
+const { links: aboutLinks, nextEntry } = await getSectionNavigation(
+  "about",
+  entry.id,
+  `${base}about`,
+);
 ---
 
-<Layout title={entry.data.title} description={entry.data.description} currentPath={`/about/${entry.id}`}>
+<Layout
+  title={entry.data.title}
+  description={entry.data.description}
+  currentPath={`/about/${entry.id}`}
+>
   <SectionNav links={aboutLinks} />
 
   <article>
-    <h1>{entry.data.title}</h1>
+    <div
+      style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;"
+    >
+      <h1 style="margin: 0;">{entry.data.title}</h1>
+      {
+        entry.id === "my-story" && (
+          <Image
+            src={siteLogo}
+            alt="Guitar Icon"
+            class="site-icon"
+            height={140}
+            style="height: 70px; width: auto; object-fit: contain;"
+          />
+        )
+      }
+    </div>
     <Content />
-    
+
     <div style="margin-top: 2rem;">
-      {nextEntry ? (
-        <a href={`${base}about/${nextEntry.id}`} class="btn">Learn About {nextEntry.data.title} &rarr;</a>
-      ) : (
-        <a href={`${base}programs`} class="btn">View Retraining Programs</a>
-      )}
+      {
+        nextEntry ? (
+          <a href={`${base}about/${nextEntry.id}`} class="btn">
+            Learn About {nextEntry.data.title} &rarr;
+          </a>
+        ) : (
+          <a href={`${base}programs`} class="btn">
+            View Retraining Programs
+          </a>
+        )
+      }
     </div>
   </article>
 </Layout>
